@@ -1,6 +1,11 @@
-import styled from "@emotion/styled"
-import { FunctionComponent } from "react"
-import ProfileImage from "./ProfileImage"
+import styled from '@emotion/styled'
+import { FunctionComponent } from 'react'
+import ProfileImage from './ProfileImage'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+
+type IntroductionProps = {
+  profileImage: IGatsbyImageData
+}
 
 const Background = styled.div`
   width: 100%;
@@ -16,7 +21,7 @@ const Wrapper = styled.div`
   width: 768px;
   height: 400px;
   margin: 0 auto;
-  
+
   @media (max-width: 768px) {
     width: 100%;
     height: 300px;
@@ -27,7 +32,7 @@ const Wrapper = styled.div`
 const SubTitle = styled.div`
   font-size: 20px;
   font-weight: 400;
-  
+
   @media (max-width: 768px) {
     font-size: 15px;
   }
@@ -37,17 +42,19 @@ const Title = styled.div`
   margin-top: 5px;
   font-size: 35px;
   font-weight: 700;
-  
+
   @media (max-width: 768px) {
     font-size: 25px;
   }
 `
 
-const Introduction: FunctionComponent = function () {
+const Introduction: FunctionComponent<IntroductionProps> = function ({
+  profileImage,
+}) {
   return (
     <Background>
       <Wrapper>
-        <ProfileImage />
+        <ProfileImage profileImage={profileImage}/>
 
         <div>
           <SubTitle>Nice to Meet You</SubTitle>

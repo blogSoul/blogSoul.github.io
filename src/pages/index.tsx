@@ -13,6 +13,11 @@ type IndexPageProps = {
     allMarkdownRemark: {
       edges: PostType[]
     }
+    file: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
+    }
   }
 }
 
@@ -50,12 +55,15 @@ const Container = styled.div`
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   data: {
     allMarkdownRemark: { edges },
+    file: {
+      childImageSharp: { gatsbyImageData },
+    },
   },
 }) {
   return (
     <Container>
       <GlobalStyle />
-      <Introduction />
+      <Introduction profileImage={gatsbyImageData}/>
       <CategoryList selectedCategory={'Web'} categoryList={CATEGORY_LIST} />
       <PostList posts={edges}/>
       <Footer />
@@ -85,6 +93,11 @@ export const getPostList = graphql`
             }
           }
         }
+      }
+    }
+    file(name: { eq: "profile-image" }) {
+      childImageSharp {
+        gatsbyImageData(width: 120, height: 120)
       }
     }
   }
