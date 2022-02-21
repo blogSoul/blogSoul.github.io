@@ -88,8 +88,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       ),
     [],
   )
-  console.log(parsed, parsed['?category'], parsed.category);
-  console.log(selectedCategory, categoryList);
   return (
     <Container>
       <GlobalStyle />
