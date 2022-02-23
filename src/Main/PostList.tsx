@@ -1,8 +1,10 @@
 import styled from '@emotion/styled'
-import { FunctionComponent, useMemo } from "react"
+import { FunctionComponent } from 'react'
 import PostItem from './PostItem'
-import { PostListItemType } from '../pages'
-import useInfiniteScroll, { useInfiniteScrollType } from "hooks/useInfiniteScroll"
+import { PostListItemType } from '../types/PostItem.types'
+import useInfiniteScroll, {
+  useInfiniteScrollType,
+} from 'hooks/useInfiniteScroll'
 
 export type PostType = {
   node: {
@@ -49,9 +51,17 @@ const PostList: FunctionComponent<PostListProps> = function ({
   )
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({node: {id, frontmatter}}: PostListItemType) => (
-        <PostItem {...frontmatter} link={"https://www.google.co.kr/"} key={id} />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   )
 }

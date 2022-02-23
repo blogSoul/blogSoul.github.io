@@ -54,7 +54,7 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
   return (
     <Background>
       <Wrapper>
-        <ProfileImage profileImage={profileImage}/>
+        <ProfileImage profileImage={profileImage} />
 
         <div>
           <SubTitle>Nice to Meet You</SubTitle>

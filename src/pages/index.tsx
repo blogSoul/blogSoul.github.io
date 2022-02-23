@@ -1,14 +1,12 @@
-import React, { FunctionComponent, useMemo } from "react"
-import styled from '@emotion/styled'
-import GlobalStyle from '../Common/GlobalStyle'
+import React, { FunctionComponent, useMemo } from 'react'
 import Introduction from '../Main/Introduction'
-import Footer from '../Common/Footer'
-import CategoryList, { CategoryListProps } from "../Main/CategoryList"
-import PostList, { PostType } from "../Main/PostList"
+import CategoryList, { CategoryListProps } from '../Main/CategoryList'
+import PostList, { PostType } from '../Main/PostList'
 import { graphql } from 'gatsby'
-import { IGatsbyImageData } from "gatsby-plugin-image"
-import { ParsedQuery } from "query-string"
-import * as queryString from "querystring"
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { ParsedQuery } from 'query-string'
+import * as queryString from 'querystring'
+import Template from 'components/Common/Template'
 
 type IndexPageProps = {
   location: {
@@ -26,31 +24,6 @@ type IndexPageProps = {
   }
 }
 
-export type PostFrontmatterType = {
-  title: string
-  date: string
-  categories: string[]
-  summary: string
-  thumbnail: {
-    childImageSharp : {
-      gatsbyImageData: IGatsbyImageData
-    }
-  }
-}
-
-export type PostListItemType = {
-  node: {
-    id: string
-    frontmatter: PostFrontmatterType
-  }
-}
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`
-
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
   data: {
@@ -61,9 +34,11 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   },
 }) {
   const parsed: ParsedQuery<string> = queryString.parse(search)
-  const parsedCategory = parsed['?category'];
+  const parsedCategory = parsed['?category']
   const selectedCategory: string =
-    typeof parsedCategory !== 'string' || !parsedCategory ? 'All' : parsedCategory
+    typeof parsedCategory !== 'string' || !parsedCategory
+      ? 'All'
+      : parsedCategory
   const categoryList = useMemo(
     () =>
       edges.reduce(
@@ -76,29 +51,27 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
           }: PostType,
         ) => {
           categories.forEach(category => {
-            if (list[category] === undefined) list[category] = 1;
-            else list[category]++;
-          });
+            if (list[category] === undefined) list[category] = 1
+            else list[category]++
+          })
 
-          list['All']++;
+          list['All']++
 
-          return list;
+          return list
         },
         { All: 0 },
       ),
     [],
   )
   return (
-    <Container>
-      <GlobalStyle />
-      <Introduction profileImage={gatsbyImageData}/>
+    <Template>
+      <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
-      <PostList selectedCategory={selectedCategory} posts={edges}/>
-      <Footer />
-    </Container>
+      <PostList selectedCategory={selectedCategory} posts={edges} />
+    </Template>
   )
 }
 
@@ -112,6 +85,9 @@ export const getPostList = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             summary

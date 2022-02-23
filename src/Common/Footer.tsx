@@ -1,5 +1,5 @@
-import styled from "@emotion/styled"
-import { FunctionComponent } from "react"
+import styled from '@emotion/styled'
+import { FunctionComponent } from 'react'
 
 const FooterWrapper = styled.div`
   display: grid;
@@ -9,7 +9,7 @@ const FooterWrapper = styled.div`
   font-size: 15px;
   text-align: center;
   line-height: 1.5;
-  
+
   @media (max-width: 768px) {
     font-size: 13px;
   }
