@@ -35,6 +35,7 @@ const PrevPageIcon = styled.div`
   font-size: 22px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 2;
 
   @media (max-width: 768px) {
     width: 30px;
@@ -47,12 +48,14 @@ const Title = styled.div`
   display: -webkit-box;
   overflow-wrap: break-word;
   margin-top: auto;
+  margin-bottom: 10px;
   text-overflow: ellipsis;
   white-space: normal;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 45px;
   font-weight: 800;
+  z-index: 2;
 
   @media (max-width: 768px) {
     font-size: 30px;
@@ -66,6 +69,7 @@ const PostData = styled.div`
   margin-top: 10px;
   font-size: 18px;
   font-weight: 700;
+  z-index: 2;
 
   @media (max-width: 768px) {
     flex-direction: column;
