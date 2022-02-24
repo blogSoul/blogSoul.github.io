@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `주니어 개발자의 개발 블로그`,
     description: `주니어 개발자로서의 저를 표현한 블로그입니다.`,
-    author: `Blogsoul`,
-    siteUrl: 'https://my-website-link.com',
+    author: `blogSoul`,
+    siteUrl: 'https://blogSoul.github.io/',
   },
   plugins: [
     {
@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: 'https://my-website.com/',
+        siteUrl: 'https://blogSoul.github.io/',
         stripQueryString: true,
       },
     },
